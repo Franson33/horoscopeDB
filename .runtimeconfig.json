@@ -1,0 +1,8 @@
+{
+  "firebase": {
+    "projectId": "horoscope-40b41",
+    "databaseURL": "https://horoscope-40b41.firebaseio.com",
+    "storageBucket": "horoscope-40b41.appspot.com",
+    "locationId": "us-central"
+  }
+}

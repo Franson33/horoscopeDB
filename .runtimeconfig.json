@@ -1,8 +1,0 @@
-{
-  "firebase": {
-    "projectId": "whisper-of-stars",
-    "databaseURL": "",
-    "storageBucket": "",
-    "locationId": "us-central"
-  }
-}

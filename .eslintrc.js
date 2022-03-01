@@ -3,20 +3,16 @@ module.exports = {
     es6: true,
     node: true,
   },
-  extends: [
-    "eslint:recommended",
-    "google",
-  ],
+  extends: ["eslint:recommended", "prettier"],
   parserOptions: {
-    "sourceType": "module",
-    "ecmaVersion": 2020,
-    "ecmaFeatures": {
-      "experimentalObjectRestSpread": true,
+    sourceType: "module",
+    ecmaVersion: 2020,
+    ecmaFeatures: {
+      experimentalObjectRestSpread: true,
     },
   },
   rules: {
-    "quotes": ["error", "double"],
+    quotes: ["error", "double"],
     "linebreak-style": 0,
-    "operator-linebreak": ["error", "before"],
   },
 };

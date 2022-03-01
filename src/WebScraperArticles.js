@@ -1,16 +1,22 @@
 const fetch = require("node-fetch");
 
-const {categorysArticleHoroscope, categorysArticleAstrology} = require( "./Data.js");
-const {parseArticles} = require("./ParseArticles.js");
+const {
+  categorysArticleHoroscope,
+  categorysArticleAstrology,
+} = require("./Data.js");
+const { parseArticles } = require("./ParseArticles.js");
 
 exports.scrapeArticles = async () => {
-  const sites = [{
+  const sites = [
+    {
       site: "horoscope",
       categorys: categorysArticleHoroscope,
-    }, {
+    },
+    {
       site: "astrology",
       categorys: categorysArticleAstrology,
-    }];
+    },
+  ];
 
   let articles = {};
 
@@ -24,30 +30,30 @@ exports.scrapeArticles = async () => {
       const url = `https://www.${site}.com/articles/${category}`;
 
       await fetch(url)
-          .then((response) => {
-            if (response.status === 200) {
-              return response.text();
-            } else {
-              throw new Error("Response status is not 200");
-            }
-          })
-          .then((html) => {
-            if (html.length) {
-              return parseArticles(html);
-            } else {
-              throw new Error("html is empty");
-            }
-          })
-          .then((result) => {
-            articles = {
-              ...articles,
-              ...result,
-            };
-          })
-          .catch((err) => console.log(err));
+        .then((response) => {
+          if (response.status === 200) {
+            return response.text();
+          } else {
+            throw new Error("Response status is not 200");
+          }
+        })
+        .then((html) => {
+          if (html.length) {
+            return parseArticles(html);
+          } else {
+            throw new Error("html is empty");
+          }
+        })
+        .then((result) => {
+          articles = {
+            ...articles,
+            ...result,
+          };
+        })
+        .catch((err) => console.log(err));
 
       const titlesArr = Object.keys(articles);
-      titlesArr.forEach((item) => articles[item]["category"] = category);
+      titlesArr.forEach((item) => (articles[item]["category"] = category));
     }
   }
 

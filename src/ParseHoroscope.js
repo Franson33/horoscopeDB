@@ -29,7 +29,7 @@ exports.parseHoroscope = async (html) => {
     const key = item.getElementsByTagName("h4")[0].innerHTML;
     const value = item.getElementsByClassName("highlight").length;
     ratingsResult[key] = value;
-  })
+  });
 
   const resultObj = {
     date: horoscopeDate,

@@ -11,8 +11,8 @@ exports.parseYearly = async (html) => {
 
   let horoscopeText = "";
 
-  childs.forEach(item => {
-    let currentText = (item.text !== undefined) ? item.text + " " : "";
+  childs.forEach((item) => {
+    let currentText = item.text !== undefined ? item.text + " " : "";
 
     horoscopeText += currentText;
   });

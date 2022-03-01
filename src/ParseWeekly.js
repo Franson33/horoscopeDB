@@ -16,8 +16,8 @@ exports.parseWeekly = async (html) => {
 
   let horoscopeText = "";
 
-  childs.forEach(item => {
-    const currentText = (item.text !== undefined) ? item.text + " " : "";
+  childs.forEach((item) => {
+    const currentText = item.text !== undefined ? item.text + " " : "";
 
     horoscopeText += currentText;
   });

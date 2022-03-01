@@ -1,8 +1,8 @@
 {
   "firebase": {
-    "projectId": "horoscope-40b41",
-    "databaseURL": "https://horoscope-40b41.firebaseio.com",
-    "storageBucket": "horoscope-40b41.appspot.com",
+    "projectId": "whisper-of-stars",
+    "databaseURL": "",
+    "storageBucket": "",
     "locationId": "us-central"
   }
 }

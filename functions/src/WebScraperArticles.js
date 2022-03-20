@@ -1,9 +1,6 @@
 const fetch = require("node-fetch");
 
-const {
-  categorysArticleHoroscope,
-  categorysArticleAstrology,
-} = require("./Data.js");
+const { categorysArticleHoroscope } = require("./Data.js");
 const { parseArticles } = require("./ParseArticles.js");
 
 exports.scrapeArticles = async () => {
@@ -11,10 +8,6 @@ exports.scrapeArticles = async () => {
     {
       site: "horoscope",
       categorys: categorysArticleHoroscope,
-    },
-    {
-      site: "astrology",
-      categorys: categorysArticleAstrology,
     },
   ];
 
@@ -45,15 +38,18 @@ exports.scrapeArticles = async () => {
           }
         })
         .then((result) => {
+          Object.keys(result).forEach(
+            (item) => (result[item]["category"] = category)
+          );
+          return result;
+        })
+        .then((result) => {
           articles = {
             ...articles,
             ...result,
           };
         })
         .catch((err) => console.log(err));
-
-      const titlesArr = Object.keys(articles);
-      titlesArr.forEach((item) => (articles[item]["category"] = category));
     }
   }
 

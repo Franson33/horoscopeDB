@@ -62,9 +62,8 @@ exports.yearlyJob = functions.pubsub
     });
   });
 
-exports.articlesDailyJob = functions
-  .runWith({ timeoutSeconds: 180, memory: "512MB" })
-  .pubsub.schedule("1 00 * * *")
+exports.articlesDailyJob = functions.pubsub
+  .schedule("1 00 * * *")
   .timeZone("Europe/London")
   .onRun(async (context) => {
     const articles = await scrapeArticles();

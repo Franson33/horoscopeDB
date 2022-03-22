@@ -6,11 +6,6 @@ const {
   findPaginationLength,
 } = require("./ParseArticlesFindPaginationLength.js");
 
-const ERRORS = {
-  EMPTY: "html is empty",
-  STATUS: "response status is not 200",
-};
-
 const categoryNameFormat = (category) => {
   const firstLetterToUpper = (match) => match.toUpperCase();
   return category.replace(/(^[a-z])/, firstLetterToUpper);
@@ -18,6 +13,7 @@ const categoryNameFormat = (category) => {
 
 exports.scrapeArticles = async () => {
   let articles = {};
+
   const categorys = categorysArticleHoroscope;
   const baseUrl = "https://www.horoscope.com";
 
@@ -41,43 +37,29 @@ exports.scrapeArticles = async () => {
 
     const paginationLength = await fetchPaginationLength(url);
 
+    const fetchArticles = async (url) => {
+      try {
+        const response = await fetch(url);
+        const html = await response.text();
+        const result = await parseArticles(html);
+
+        Object.keys(result).forEach(
+          (item) => (result[item]["category"] = category)
+        );
+
+        articles = {
+          ...articles,
+          ...result,
+        };
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
     for (let l = 0; l < paginationLength; l++) {
-      await fetch(`${urlWithPagination}${l + 1}`)
-        .then((response) => {
-          if (response.status === 200) {
-            return response.text();
-          } else {
-            throw new Error(ERRORS.STATUS);
-          }
-        })
-        .then((html) => {
-          if (html.length) {
-            return parseArticles(html);
-          } else {
-            throw new Error(ERRORS.EMPTY);
-          }
-        })
-        .then((result) => {
-          Object.keys(result).forEach(
-            (item) => (result[item]["category"] = category)
-          );
-          return result;
-        })
-        .then((result) => {
-          articles = {
-            ...articles,
-            ...result,
-          };
-        })
-        .catch((err) => console.log(err));
+      await fetchArticles(`${urlWithPagination}${l + 1}`);
     }
   }
 
   return articles;
 };
-
-const getArticles = async () => {
-  const articles = await this.scrapeArticles();
-};
-
-getArticles();

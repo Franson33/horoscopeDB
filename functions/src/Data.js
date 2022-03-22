@@ -17,7 +17,13 @@ exports.daysArray = ["daily-yesterday", "daily-today", "daily-tomorrow"];
 
 exports.yearsArray = ["2019", "2020", "2021", "2022"];
 
-exports.categorysArticleHoroscope = ["spirit", "style", "sun", "sex"];
+exports.categorysArticleHoroscope = [
+  "spirit",
+  "style",
+  "success",
+  "sun",
+  "sex",
+];
 
 exports.categorysArray = ["general", "love", "career", "wellness"];
 

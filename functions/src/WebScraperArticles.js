@@ -47,17 +47,19 @@ exports.scrapeArticles = async () => {
           (item) => (result[item]["category"] = category)
         );
 
-        articles = {
-          ...articles,
-          ...result,
-        };
+        return result;
       } catch (err) {
         console.log(err);
       }
     };
 
     for (let l = 0; l < paginationLength; l++) {
-      await fetchArticles(`${urlWithPagination}${l + 1}`);
+      const result = await fetchArticles(`${urlWithPagination}${l + 1}`);
+
+      articles = {
+        ...articles,
+        ...result,
+      };
     }
   }
 

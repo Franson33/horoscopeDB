@@ -15,7 +15,7 @@ exports.zodiacSigns = [
 
 exports.daysArray = ["daily-yesterday", "daily-today", "daily-tomorrow"];
 
-exports.yearsArray = ["2019", "2020", "2021", "2022"];
+exports.yearsArray = ["2022"];
 
 exports.categorysArticleHoroscope = [
   "spirit",

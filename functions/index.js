@@ -29,7 +29,7 @@ exports.dailyJob = functions.pubsub
   });
 
 exports.weeklyJob = functions.pubsub
-  .schedule("1 00 * * mon")
+  .schedule("1 00 * * 1/3")
   .timeZone("Europe/London")
   .onRun(async (context) => {
     const weeklyResult = await scrapeWeeklyHoroscope();

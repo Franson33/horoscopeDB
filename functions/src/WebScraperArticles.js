@@ -68,10 +68,3 @@ exports.scrapeArticles = async () => {
 
   return articles;
 };
-
-const getArticles = async () => {
-  const articles = await this.scrapeArticles();
-  console.log(articles);
-};
-
-getArticles();
